@@ -27,14 +27,32 @@ public class Ravenclaw extends Hogwarts {
         return creation;
     }
 
-    public void printInformation() {
-        System.out.print("Имя студента " + nameOfStudent);
-        System.out.print(", сила магии " + powerOfMagic);
-        System.out.print(", расстояние трансгрессии " + transgressionDistance);
-        System.out.print(", ум " + mind);
-        System.out.print(", мудрость" + wisdom);
-        System.out.print(", остроумие" + wit);
-        System.out.print(", творчество" + creation);
-        System.out.println();
+    @Override
+    public String toString() {
+        return getNameOfStudent() + ": факультет Когтевран" +
+                ", сила магии " + getPowerOfMagic() +
+                ", расстояние трансгрессии " + getTransgressionDistance() +
+                ", разум " + mind +
+                ", мудрость " + wisdom +
+                ", остроумие " + wit +
+                ", творчество " + creation;
     }
+
+    @Override
+    protected int getAbilitiesSum() {
+        return mind + wisdom + wit + creation;
+    }
+    public static void compare(Ravenclaw firstStudent, Ravenclaw secondStudent) {
+        int firstStudentSum = firstStudent.getAbilitiesSum();
+        int secondStudentSum = secondStudent.getAbilitiesSum();
+
+        if (firstStudentSum > secondStudentSum) {
+            System.out.println(firstStudent.getNameOfStudent() + " лучший когтевранец, чем " + secondStudent.getNameOfStudent());
+        } else if (firstStudentSum < secondStudentSum) {
+            System.out.println(secondStudent.getNameOfStudent() + " лучший когтевранец, чем " + firstStudent.getNameOfStudent());
+        } else {
+            System.out.println("Когтевранцы " + firstStudent.getNameOfStudent() + " и " + secondStudent.getNameOfStudent() + " одинаково хороши");
+        }
+    }
+
 }

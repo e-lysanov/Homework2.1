@@ -34,15 +34,31 @@ public class Slytherin extends Hogwarts {
         return lustForPower;
     }
 
-    public void printInformation() {
-        System.out.print("Имя студента " + nameOfStudent);
-        System.out.print(", сила магии " + powerOfMagic);
-        System.out.print(", расстояние трансгрессии " + transgressionDistance);
-        System.out.print(", хитрость" + cunning);
-        System.out.print(", решительность" + determination);
-        System.out.print(", амбициозность" + ambition);
-        System.out.print(", находчивость" + resourcefulness);
-        System.out.print(", жажда власти " + lustForPower);
-        System.out.println();
+    @Override
+    public String toString() {
+        return getNameOfStudent() +  ": факультет Слизерин" +
+                ", сила магии " + getPowerOfMagic() +
+                ", расстояние трансгрессии " + getTransgressionDistance() +
+                ", хитрость " + cunning +
+                ", решительность " + determination +
+                ", амбициозность " + ambition +
+                ", находчивость " + resourcefulness +
+                ", жажда власти " + lustForPower;
+    }
+    @Override
+    protected int getAbilitiesSum() {
+        return cunning + determination + ambition + resourcefulness + lustForPower;
+    }
+    public static void compare(Slytherin firstStudent, Slytherin secondStudent) {
+        int firstStudentSum = firstStudent.getAbilitiesSum();
+        int secondStudentSum = secondStudent.getAbilitiesSum();
+
+        if (firstStudentSum > secondStudentSum) {
+            System.out.println(firstStudent.getNameOfStudent() + " лучший слизеринец, чем " + secondStudent.getNameOfStudent());
+        } else if (firstStudentSum < secondStudentSum) {
+            System.out.println(secondStudent.getNameOfStudent() + " лучший слизеринец, чем " + firstStudent.getNameOfStudent());
+        } else {
+            System.out.println("Слизеринцы " + firstStudent.getNameOfStudent() + " и " + secondStudent.getNameOfStudent() + " одинаково хороши");
+        }
     }
 }

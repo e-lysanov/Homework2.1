@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Gryffindor extends Hogwarts {
     private int nobility;
     private int honor;
@@ -24,21 +26,29 @@ public class Gryffindor extends Hogwarts {
 
     @Override
     public String toString() {
-        return "Имя студента " + nameOfStudent +
-                ", сила магии " + powerOfMagic +
-                ", расстояние трансгрессии " + transgressionDistance +
+        return getNameOfStudent() + ": факультет Гриффиндор" +
+                ", сила магии " + getPowerOfMagic() +
+                ", расстояние трансгрессии " + getTransgressionDistance() +
                 ", благородство " + nobility +
                 ", честь " + honor +
                 ", храбрость " + bravery;
     }
 
-    public void printInformation() {
-        System.out.print("Имя студента " + nameOfStudent);
-        System.out.print(", сила магии " + powerOfMagic);
-        System.out.print(", расстояние трансгрессии " + transgressionDistance);
-        System.out.print(", благородство " + nobility);
-        System.out.print(", честь " + honor);
-        System.out.print(", храбрость " + bravery);
-        System.out.println();
+    @Override
+    protected int getAbilitiesSum() {
+        return nobility + honor + bravery;
     }
+    public static void compare(Gryffindor firstStudent, Gryffindor secondStudent) {
+        int firstStudentSum = firstStudent.getAbilitiesSum();
+        int secondStudentSum = secondStudent.getAbilitiesSum();
+
+        if (firstStudentSum > secondStudentSum) {
+            System.out.println(firstStudent.getNameOfStudent() + " лучший гриффиндорец, чем " + secondStudent.getNameOfStudent());
+        } else if (firstStudentSum < secondStudentSum) {
+            System.out.println(secondStudent.getNameOfStudent() + " лучший гриффиндорец, чем " + firstStudent.getNameOfStudent());
+        } else {
+            System.out.println("Гриффиндорцы " + firstStudent.getNameOfStudent() + " и " + secondStudent.getNameOfStudent() + " одинаково хороши");
+        }
+    }
+
 }
